@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('./partials/head.ejs')%>
+  <title>Signin</title>
+  <link rel="stylesheet" href="/stylesheet/style.css">
+</head>
+
+<body>
+  <%- include ("./partials/nav.ejs") %>
+
+  <div class="container mt-4">
+    <h1>Sign-In</h1>
+    <form action="/user/signin" method="post">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="fullname" name="email">
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword1" name="password">
+      </div>
+      <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+        <label class="form-check-label" for="exampleCheck1">Remember me</label>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <%- include ("./partials/footer.ejs") %>
+  <%- include ("./partials/script.ejs") %>
+</body>
+
+</html>

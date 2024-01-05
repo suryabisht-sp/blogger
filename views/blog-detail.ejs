@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('./partials/head.ejs')%>
+  <title>Blog</title>
+  <link rel="stylesheet" href="/stylesheet/style.css">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+  <%- include ("./partials/nav.ejs") %>
+  <%- include ("./partials/script.ejs") %>
+  <div class="container mt-4">
+  <h1><%= blog?.title%></h1>
+  <img src="<%=blog?.coverImageUrl%>" alt="" />
+ <p class="card-text mt-3"><%=blog?.body%></p>
+  </div>
+  <div class="container mt-4">
+    <img src="<%= blog?.createdBy.profileImage%>" width="50px" alt="" style="border-radius: 50%;"/> <%=blog.createdBy.fullname %>
+  </div>
+
+  <div class="container mt-3">
+    <h1>Comments(<%=comments.length%>)</h1> 
+    <% if(locals.user){ %>   
+    <form action="/blog/comment/<%=blog._id%>" method="post">
+      <div class="mb-3">
+       <input type="text" class="form-control" placeholder="Enter your Comment" aria-describedby="content" name="content">
+      </div>
+      <button type="submit" class="btn btn-primary">Add</button>
+    </form>
+    <%} %>
+  </div>
+  <div class="container list-group mt-3">
+   <%comments.forEach(comment=>{%>   
+     <div class="list-group-item list-group-item-action d-flex justify-content-between" aria-current="true">
+    <div class="w-50 ">
+       <img src="<%= comment?.createdBy.profileImage%>" width="40px" height="40px" alt="" style="border-radius: 50%;"/> <%=comment.createdBy.fullname %>
+     <pre><%=comment.content%></pre>     
+    </div>
+    <small>3 days ago</small>
+    </div>
+    <!-- <div class="card">    
+  <img src="<%= comment?.createdBy.profileImage%>" width="40px" height="40px" alt="" style="border-radius: 50%;"/> <%=comment.createdBy.fullname %>
+  <pre><%=comment.content%></pre>           
+  </div> -->
+  <%})%>
+  </div>
+  <%- include ("./partials/footer.ejs") %>
+</body>
+
+</html>

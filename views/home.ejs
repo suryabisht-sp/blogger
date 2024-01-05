@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <%- include('./partials/head.ejs')%>
+  <title>Home Page</title>
+  <link rel="stylesheet" href="/stylesheet/style.css">
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+</head>
+
+<body>
+  <%- include ("./partials/nav.ejs") %>
+  <%- include ("./partials/script.ejs") %>
+  <div class="container mt-3 fle">
+        <% blogs.forEach(blog=>{ %>
+             <div class="card mb-2" style="width: 16rem; margin-right: 10px;">
+            <img src="<%=blog.coverImageUrl; %>" style="height: 170px" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title" style="height: 6rem" ><%=blog.title %></h5>
+              <a href="/blog/<%=blog._id %>" class="btn btn-primary view-btn">View</a>
+            </div>
+          </div>
+          <% })%>
+        
+  </div>
+  <%- include ("./partials/footer.ejs") %>
+</body>
+
+</html>
