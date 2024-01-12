@@ -1,6 +1,7 @@
 const mongoose = require("mongoose")
 
 const { Schema } = require("mongoose")
+
 const {
   createHmac, randomBytes
 } = require('crypto');
@@ -33,6 +34,8 @@ const userSchema = new Schema({
     enum: ["user", "Admin"],
     default: "user"
   },
+  passwordResetTime: { type: Date},
+  passResetToken: { type: String }
 })
 
 
@@ -57,8 +60,72 @@ userSchema.static("matchPassword", async function (email, password) {
   }
   const token = createToken(user)
   return token;
-
 })
+
+userSchema.static("forgetpass", async function (email) {
+  try {
+    // Check if the user exists
+    const user = await this.findOne({ email });
+    if (!user) {
+      throw new Error("Email not registered with us");
+    }
+    const salt = user.salt;
+    const resetToken = "password";
+    // Update the user with the new values
+    const updatedUser = await this.findOneAndUpdate(
+      { email },
+      {
+        $set: {
+          passResetToken: createHmac('sha256', salt).update(resetToken).digest("hex"),
+          passwordResetTime: new Date(Date.now() + 30 * 60 * 1000)
+        }
+      },
+      { new: true, runValidators: true }
+    );
+    return {
+      passToken: updatedUser.passResetToken,
+      passTime: updatedUser.passwordResetTime,
+      user: updatedUser
+    };
+  } catch (error) {
+    console.error("Error updating user:", error);
+    throw new Error("Failed to update user");
+  }
+});
+
+userSchema.static("saveResetPass", async function (email, password, cpass) {
+  try {
+    // Check if the user exists
+    const user = await this.findOne({ email });
+    if (!user) {
+      throw new Error("Email not registered with us");
+    }
+    const salt = user.salt;
+     // Update the user with the new values
+    if (password !== cpass) {
+     return new Error ("Password didn't matched")
+    }
+    const updatedUser = await this.findOneAndUpdate(
+      { email },
+      {
+        $set: {
+          password:createHmac('sha256', salt).update(password).digest("hex"),
+          passResetToken: null,
+          passwordResetTime: null,
+        }
+      },
+      { new: true, runValidators: true }
+    );
+    return {
+     user: updatedUser
+    };
+  } catch (error) {
+    console.error("Error updating user's password:", error);
+    throw new Error("Failed to update user password");
+  }
+});
+
+
 
 const userModel = mongoose.model("userBlog", userSchema);
 

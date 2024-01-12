@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg " style=" background: linear-gradient(10deg,#6e99e6 ,#093c94);;">
   <div class="container-fluid">
-    <a class="navbar-brand nav-color" href="#">Blogger-blog</a>
+    <a class="navbar-brand nav-color" href="/">Blogger-blog</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,11 +15,10 @@
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle nav-color" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            
-Surya          </a>
+            <%= locals?.user?.username %> </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Profile</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="/user/profile">Profile</a></li>
+            <li><a class="dropdown-item" href="/user/setting">Settings</a></li>
             <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
           </ul>
         </li>
@@ -28,10 +27,10 @@ Surya          </a>
         <li class="nav-item"><a class="nav-link nav-color" href="/user/signup">Create Account</a></li>
         <%} %>
       </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success search-btn" type="submit">Search</button>
-      </form>
+    <form class="d-flex" action="/user/search" method="GET">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+  <button class="btn btn-outline-success search-btn" type="submit">Search</button>
+</form>
     </div>
   </div>
 </nav>

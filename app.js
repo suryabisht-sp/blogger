@@ -1,13 +1,15 @@
 require('dotenv').config()
 const express = require('express')
-const path= require("path")
+const path = require("path")
+const methodOverride = require('method-override');
 const app = express();
 const router = require("./routes/router.js")
 const blogRoute = require("./routes/blog.js")
 const connectToDatabase = require("./connect/dbconnect.js")
 const cookieParser = require('cookie-parser');
 const { checkForAuthenticationCookie } = require('./middlewares/authentication.js');
-const Blog= require('./models/blog.js')
+const Blog = require('./models/blog.js');
+const Comments = require("./models/comments.js")
 
 const PORT = process.env.PORT
 const url=process.env.MONGODB_URL
@@ -19,6 +21,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 app.use(cookieParser())
 
+// app.use(methodOverride('_method'));
 
 app.set("view engine", "ejs")
 app.set("views", path.resolve("./views"))
@@ -31,10 +34,10 @@ res.render("home", { user: req.user, blogs: allBlogs })
 
 app.use("/user", router)
 app.use("/blog", blogRoute)
-app.use((req, res, next) => {
-res.status(404).render('404'); // Render the 404 EJS template
-});
 
+app.use((req, res, next) => {
+res.status(404).render('404'); // Render 404 EJS template
+});
 
 app.listen(PORT, () => {
 console.log(`server is up at port ${PORT}`)

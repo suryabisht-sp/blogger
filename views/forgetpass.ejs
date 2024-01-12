@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <%- include('./partials/head.ejs')%>
+  <title>forgetpassword</title>
+  <link rel="stylesheet" href="/stylesheet/style.css">
+</head>
+<body>
+  <%- include ("./partials/nav.ejs") %>
+  <div class="container mt-4">
+    <h1>Forget Password</h1>
+    <form action="/user/forgetpassword" method="post">
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="fullname" name="email">
+      </div>
+       <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  <%- include ("./partials/footer.ejs") %>
+  <%- include ("./partials/script.ejs") %>
+</body>
+
+</html>

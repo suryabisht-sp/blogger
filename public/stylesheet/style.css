@@ -277,3 +277,7 @@ color: #093c94;
 border: 1px solid#fff;
 box-shadow: 1px 1px 10px #093c94;
 }
+.not-found{
+    color:red;
+    font-size: 24px;
+}

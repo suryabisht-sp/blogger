@@ -1,0 +1,103 @@
+*{
+    font-family: sans-serif;
+}
+
+.logo-text{
+    color: #000;
+        font-size: 9px;
+    font-weight: 900;
+}
+
+
+#invoice {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        #invoice header {
+            /* text-align: center; */
+            margin-bottom: 20px;
+        }
+
+        #invoice main {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th, td {
+            border: 2px solid #a9a6a6de;
+            padding: 8px;
+            text-align: left;
+        }
+
+        #invoice footer {
+            text-align: right;
+        }
+
+p{
+    text-align: center;
+    color: #fff;
+}
+        
+
+.col-heading{
+    color: blue;
+}
+
+.col-text{
+    color: #000;
+    font-weight: 700;
+    font-size: larger;
+}
+
+.col-rating{
+    background-color: yellow;
+}
+
+.footer-text{
+    color: #fff;
+    background-color: red;
+    padding: 5px;
+    font-size: larger;
+    font-weight: 500;
+}
+
+.col-heading1{
+    font-size: 17px;
+    color: blue
+}
+
+h2{
+    color: teal;
+    font-size: xx-large;
+}
+
+.logo1{
+        width: 290px;
+    padding-right: 6px;
+}
+
+.job-sheet{
+    font-size: 90px;
+    font-weight: 500;
+    font-family: system-ui;
+}
+
+   .table-header{
+            background-color: #a9a6a6de;
+            color: #fff;
+        }
+
+        .table-text{
+            font-size: xx-large;
+    color: teal;
+        }
+        .heading2{
+            font-size: 41px;
+        }

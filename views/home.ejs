@@ -12,15 +12,23 @@
   <%- include ("./partials/nav.ejs") %>
   <%- include ("./partials/script.ejs") %>
   <div class="container mt-3 fle">
-        <% blogs.forEach(blog=>{ %>
-             <div class="card mb-2" style="width: 16rem; margin-right: 10px;">
-            <img src="<%=blog.coverImageUrl; %>" style="height: 170px" class="card-img-top" alt="">
-            <div class="card-body">
-              <h5 class="card-title" style="height: 6rem" ><%=blog.title %></h5>
-              <a href="/blog/<%=blog._id %>" class="btn btn-primary view-btn">View</a>
-            </div>
-          </div>
-          <% })%>
+           <% if (blogs.length > 0) { %>
+    <% blogs.forEach(blog => { %>
+      <div class="card mb-2" style="width: 16rem; margin-right: 10px;">
+        <img src="<%= blog.coverImageUrl; %>" style="height: 170px" class="card-img-top" alt="">
+        <div class="card-body">
+          <h5 class="card-title" style="height: 6rem"><%= blog.title %></h5>
+          <a href="/blog/<%= blog._id %>" class="btn btn-primary view-btn">View</a>
+        </div>
+      </div>
+    <% }) %>
+  <% } else { %>
+    <div class="d-flex">
+<img width="150px" src="https://cdn.pixabay.com/photo/2017/03/09/12/31/error-2129569__340.jpg" alt=""
+                        class="img-fluid">
+      <p class="not-found d-flex align-items-end"> Try Again...</p>
+    </div>
+  <% } %>
         
   </div>
   <%- include ("./partials/footer.ejs") %>
